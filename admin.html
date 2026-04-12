@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hệ Thống Admin - VFRRRR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col italic font-sans">
+
+    <header class="p-6 bg-slate-800 border-b border-slate-700 shadow-xl">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="text-xl font-black text-orange-500 uppercase tracking-widest">Admin Control Center</div>
+            <div class="flex gap-4">
+                <a href="leads.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-xs font-bold uppercase transition">Danh sách đơn hàng</a>
+                <button onclick="sessionStorage.clear(); window.location.href='login.html'" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-xs font-bold uppercase transition">Thoát</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-6">
+        <div class="w-full max-w-xl bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-2xl">
+            <h2 class="text-lg font-bold text-gray-400 mb-6 uppercase tracking-wider">Cập nhật nội dung trang</h2>
+            
+            <div class="space-y-4">
+                <select id="slug" class="w-full p-4 rounded-xl bg-slate-700 text-white font-bold border-none outline-none focus:ring-2 focus:ring-orange-500 transition">
+                    <option value="home">TRANG CHỦ</option>
+                    <option value="about">GIỚI THIỆU</option>
+                    <option value="contact">LIÊN HỆ</option>
+                </select>
+                <input id="title" type="text" placeholder="Nhập tiêu đề..." class="w-full p-4 rounded-xl bg-slate-700 text-white outline-none focus:ring-2 focus:ring-orange-500">
+                <textarea id="body" placeholder="Nhập nội dung mô tả..." class="w-full p-4 rounded-xl bg-slate-700 text-white h-32 outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                <input id="bannerUrl" type="text" placeholder="Link ảnh Banner (Dành cho Trang chủ)" class="w-full p-4 rounded-xl bg-slate-700 text-white outline-none focus:ring-2 focus:ring-orange-500">
+                
+                <hr class="border-slate-700 my-4">
+                <input id="pwd" type="password" placeholder="Mật khẩu Admin" class="w-full p-4 rounded-xl bg-slate-700 border-2 border-orange-500/20 text-white outline-none focus:ring-2 focus:ring-orange-500">
+                <button onclick="save()" class="w-full bg-orange-500 hover:bg-orange-600 p-4 rounded-xl font-black text-xl shadow-lg transition transform active:scale-95 uppercase">Lưu thay đổi</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-4 text-center text-gray-500 text-[10px] uppercase tracking-[0.2em]">
+        Firebase CMS v2.0 • Build with Passion
+    </footer>
+
+    <script type="module">
+        import { db, doc, setDoc } from './db.js';
+        window.save = async () => {
+            if(document.getElementById('pwd').value !== '123') return alert("Sai mật khẩu!");
+            const slug = document.getElementById('slug').value;
+            const title = document.getElementById('title').value;
+            const body = document.getElementById('body').value;
+            const bannerUrl = document.getElementById('bannerUrl').value;
+            await setDoc(doc(db, "web_content", slug), { title, body, bannerUrl });
+            alert("Cập nhật thành công!");
+        };
+    </script>
+</body>
+</html>

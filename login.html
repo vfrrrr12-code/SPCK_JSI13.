@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập vfrrrr Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 h-screen flex items-center justify-center p-6 font-sans">
+
+    <div class="w-full max-w-sm bg-white rounded-[40px] p-10 shadow-[0_20px_50px_rgba(249,115,22,0.3)] text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-orange-500"></div>
+        
+        <div class="mb-8">
+            <div class="text-4xl mb-2">🔐</div>
+            <h1 class="text-3xl font-black text-gray-900 italic uppercase">vf<span class="text-orange-500">rrrr</span></h1>
+            <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-2">Hệ thống quản trị</p>
+        </div>
+
+        <div class="space-y-4">
+            <input id="adminKey" type="password" placeholder="Mật khẩu truy cập" 
+                   class="w-full p-4 bg-gray-100 border-none rounded-2xl text-center font-bold outline-none focus:ring-2 focus:ring-orange-500 transition">
+            
+            <button onclick="checkAuth()" 
+                    class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl shadow-lg transition transform active:scale-95 uppercase tracking-widest">
+                Tiến vào Admin
+            </button>
+        </div>
+
+        <p class="mt-8 text-[10px] text-gray-400 uppercase tracking-tight italic">Thiết bị của bạn sẽ được ghi nhớ trong phiên này</p>
+    </div>
+
+    <script>
+        function checkAuth() {
+            const key = document.getElementById('adminKey').value;
+            // Bạn có thể đổi mật khẩu 'vfrrrr123' thành bất cứ thứ gì bạn muốn
+            if (key === 'vfrrrr123') {
+                sessionStorage.setItem("isVfrrrrAdmin", "true");
+                window.location.href = "admin.html";
+            } else {
+                alert("Mật khẩu sai rồi! Vui lòng thử lại.");
+                document.getElementById('adminKey').value = "";
+            }
+        }
+
+        // Nhấn Enter để đăng nhập luôn cho tiện
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') checkAuth();
+        });
+    </script>
+</body>
+</html>
