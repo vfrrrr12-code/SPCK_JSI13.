@@ -2,51 +2,65 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giới Thiệu - VFRRRR</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; }
+        body { background-color: #f8fafc; color: #0f172a; }
+        .text-gradient {
+            background: linear-gradient(to right, #0f172a, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
 </head>
-<body class="bg-white flex flex-col min-h-screen font-sans">
-
-    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black text-gray-900 tracking-tighter italic">VF<span class="text-orange-500">RRRR</span></div>
-            <div class="flex gap-8 font-bold text-gray-600 text-sm uppercase">
-                <a href="index.html" class="hover:text-orange-500 transition">Trang chủ</a>
-                <a href="about.html" class="text-orange-500 border-b-2 border-orange-500">Giới thiệu</a>
-                <a href="contact.html" class="hover:text-orange-500 transition">Liên hệ</a>
+<body class="antialiased flex flex-col min-h-screen">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl">
+        <div class="glass-nav border border-slate-200 rounded-full px-8 py-4 flex justify-between items-center shadow-lg">
+            <div class="text-2xl font-black italic tracking-tighter uppercase">VF<span class="text-orange-500">RRRR</span></div>
+            <div class="flex gap-8 text-[10px] uppercase font-extrabold tracking-widest text-slate-400">
+                <a href="index.html" class="hover:text-orange-500 transition">Home</a>
+                <a href="about.html" class="text-orange-500">About</a>
+                <a href="contact.html" class="hover:text-orange-500 transition">Contact</a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow py-16 px-6">
+    <main class="flex-grow pt-44 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="bg-gray-50 p-10 md:p-16 rounded-[40px] border border-gray-100 shadow-sm">
-                <span class="text-orange-500 font-bold tracking-widest uppercase text-xs">Về chúng tôi</span>
-                <h1 id="title" class="text-4xl md:text-5xl font-black text-gray-900 mt-4 mb-8 uppercase italic leading-tight">Đang tải...</h1>
-                <div id="body" class="text-lg md:text-xl text-gray-600 leading-relaxed font-light italic space-y-6">
-                    </div>
+            <h1 id="title" class="text-gradient text-6xl md:text-8xl font-black italic uppercase tracking-tighter mb-8 leading-none">Loading...</h1>
+            <p id="body" class="text-xl md:text-2xl text-slate-500 font-medium italic mb-12 leading-relaxed border-l-4 border-orange-500 pl-8"></p>
+            <div id="subBody" class="bg-white p-10 md:p-16 rounded-[50px] shadow-sm border border-slate-100 italic text-slate-600 leading-loose text-lg"></div>
+            <div class="mt-16 text-center">
+                <a href="contact.html" class="inline-block bg-slate-900 text-white px-12 py-5 rounded-full font-extrabold uppercase tracking-widest text-[10px] hover:bg-orange-500 transition-all shadow-xl active:scale-95">Bắt đầu hợp tác ngay</a>
             </div>
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-gray-400 py-12 px-6 mt-10">
-        <div class="max-w-7xl mx-auto text-center border-b border-gray-800 pb-8">
-            <div class="text-xl font-bold text-white mb-2 italic">VFRRRR</div>
-            <p class="text-xs uppercase tracking-[0.3em]">Giải pháp Marketing thế hệ mới</p>
-        </div>
-        <div class="max-w-7xl mx-auto mt-8 text-center text-[10px] uppercase tracking-widest">
-            © 2026 VFRRRR. All rights reserved.
-        </div>
+    <footer class="py-12 text-center border-t border-slate-200 bg-white mt-20">
+        <div class="text-[10px] text-slate-300 font-bold tracking-[0.5em] uppercase italic">© 2026 vfrrrr studio • Innovation First</div>
     </footer>
 
     <script type="module">
         import { db, doc, getDoc } from './db.js';
         async function load() {
-            const snap = await getDoc(doc(db, "web_content", "about"));
-            if(snap.exists()){
-                document.getElementById('title').innerText = snap.data().title;
-                document.getElementById('body').innerHTML = snap.data().body.replace(/\n/g, '<br>');
-            }
+            try {
+                const snap = await getDoc(doc(db, 'web_content', 'about'));
+                if(snap.exists()){
+                    const d = snap.data();
+                    document.getElementById('title').innerText = d.title;
+                    document.getElementById('body').innerText = d.body;
+                    document.getElementById('subBody').innerHTML = d.subBody ? d.subBody.replace(/\n/g, '<br>') : "Dữ liệu đang cập nhật...";
+                }
+            } catch (err) { console.error(err); }
         }
         load();
     </script>
