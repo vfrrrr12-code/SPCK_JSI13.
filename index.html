@@ -2,64 +2,86 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trang Chủ - VFRRRR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vfrrrr | Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; }
+        body { background-color: #f8fafc; color: #0f172a; }
+        .hero-gradient {
+            background: linear-gradient(to right, #ffffff, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bento-card { border-radius: 40px; background: white; border: 1px solid #f1f5f9; transition: all 0.4s ease; }
+    </style>
 </head>
-<body class="bg-white flex flex-col min-h-screen font-sans">
-
-    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black text-gray-900 tracking-tighter italic">VF<span class="text-orange-500">RRRR</span></div>
-            <div class="flex gap-8 font-bold text-gray-600 text-sm uppercase">
-                <a href="index.html" class="text-orange-500">Trang chủ</a>
-                <a href="about.html" class="hover:text-orange-500 transition">Giới thiệu</a>
-                <a href="contact.html" class="hover:text-orange-500 transition">Liên hệ</a>
+<body class="antialiased flex flex-col min-h-screen">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl">
+        <div class="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-full px-8 py-4 flex justify-between items-center shadow-lg">
+            <div class="text-2xl font-black italic tracking-tighter uppercase">VF<span class="text-orange-500">RRRR</span></div>
+            <div class="flex gap-8 text-[10px] uppercase font-extrabold tracking-widest text-slate-400">
+                <a href="index.html" class="text-orange-500">Home</a>
+                <a href="about.html" class="hover:text-orange-500 transition">About</a>
+                <a href="contact.html"class="hover:text-orange-500 transition">Contact</a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow">
-        <header class="relative h-[600px] flex items-center justify-center text-white overflow-hidden">
-            <img id="banner-img" src="" class="absolute inset-0 w-full h-full object-cover z-0">
-            <div class="absolute inset-0 bg-black/60 z-10"></div>
-            <div class="relative z-20 text-center px-6 max-w-4xl">
-                <h1 id="title" class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter italic">Loading...</h1>
-                <p id="body" class="text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto font-light italic"></p>
-                <a href="contact.html" class="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-full font-black text-lg shadow-xl transition transform hover:scale-105 inline-block uppercase">Tư vấn ngay</a>
-            </div>
-        </header>
+    <header class="relative h-[33vh] flex items-center justify-center overflow-hidden bg-slate-900">
+        <img id="banner-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-50">
+        <div class="relative z-10 text-center px-6">
+            <h1 id="title" class="hero-gradient text-4xl md:text-7xl font-black italic uppercase tracking-tighter leading-none">Loading...</h1>
+            <p id="body" class="text-slate-300 font-medium italic mt-4 text-sm md:text-lg"></p>
+        </div>
+    </header>
+
+    <main class="py-12 px-6 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-8 bento-card p-10 min-h-[300px] flex items-center">
+            <div id="subBody" class="text-slate-600 text-xl leading-relaxed italic font-medium"></div>
+        </div>
+        <div class="md:col-span-4 bento-card bg-orange-500 p-10 flex flex-col justify-end text-white border-none">
+            <div class="text-5xl font-black italic tracking-tighter uppercase mb-2">VF<br>RRRR</div>
+            <p class="font-bold text-[10px] uppercase tracking-[0.2em] opacity-80 italic italic">Innovation Studio</p>
+        </div>
+        
+        <a href="contact.html" class="md:col-span-12 bento-card p-10 flex items-center justify-between group hover:bg-slate-900">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic tracking-tighter group-hover:text-white transition">Sẵn sàng bứt phá? <span class="text-orange-500">Liên hệ ngay</span></h3>
+            <div class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:text-white transition-all text-xl">→</div>
+        </a>
     </main>
 
-    <footer class="bg-gray-900 text-gray-400 py-12 px-6 mt-10 relative">
-    <div class="max-w-7xl mx-auto text-center border-b border-gray-800 pb-8">
-        <div class="text-xl font-bold text-white mb-2 italic uppercase tracking-widest">vfrrrr</div>
-        <p class="text-xs uppercase tracking-[0.3em] text-orange-500/80 font-bold italic">Giải pháp Marketing đột phá</p>
-    </div>
-    
-    <div class="max-w-7xl mx-auto mt-8 flex justify-between items-center text-[10px] uppercase tracking-widest px-4">
-        <span>© 2026 vfrrrr. All rights reserved.</span>
-        
-        <a href="login.html" class="text-gray-700 hover:text-orange-500 transition duration-300 flex items-center gap-1 group">
-            <span class="opacity-0 group-hover:opacity-100 transition-opacity">QUẢN TRỊ</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-        </a>
-    </div>
-</footer>
+    <footer class="py-12 border-t border-slate-100 bg-white">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-[10px] text-slate-300 font-black uppercase tracking-[0.5em] italic">
+                © 2026 <span id="secret-trigger" class="cursor-pointer hover:text-orange-500 transition">vfrrrr</span> studio
+            </div>
+        </div>
+    </footer>
 
     <script type="module">
         import { db, doc, getDoc } from './db.js';
         async function load() {
-            const snap = await getDoc(doc(db, "web_content", "home"));
+            const snap = await getDoc(doc(db, 'web_content', 'home'));
             if(snap.exists()){
-                const data = snap.data();
-                document.getElementById('title').innerText = data.title;
-                document.getElementById('body').innerText = data.body;
-                document.getElementById('banner-img').src = data.bannerUrl || "https://images.unsplash.com/photo-1497215728101-856f4ea42174";
+                const d = snap.data();
+                document.getElementById('title').innerText = d.title;
+                document.getElementById('body').innerText = d.body;
+                document.getElementById('subBody').innerHTML = d.subBody ? d.subBody.replace(/\n/g, '<br>') : "";
+                if(d.bannerUrl) document.getElementById('banner-img').src = d.bannerUrl;
             }
         }
         load();
+
+        // Lối vào Admin: Click 3 lần vào chữ vfrrrr ở Footer
+        let count = 0;
+        document.getElementById('secret-trigger').onclick = () => {
+            count++;
+            if(count >= 3) window.location.href = "login.html";
+            setTimeout(() => { count = 0; }, 2000);
+        };
     </script>
 </body>
 </html>
