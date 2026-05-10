@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | vfrrrr</title>
+    <title>Contact | VFRRRR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
-    <style>* { font-family: 'Plus Jakarta Sans', sans-serif !important; } body { background-color: #f8fafc; }</style>
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: none !important; }
+        :root[data-theme="dark"] { --bg: #071e3d; --text: #f0f9ff; --nav: #0c4a6e; }
+        :root[data-theme="light"] { --bg: #f0f9ff; --text: #075985; --nav: #ffffff; }
+        body { background: var(--bg); color: var(--text); }
+        .brand-lime { color: #bef264; }
+        .nav-fixed { padding: 1.5rem 4rem; width: 90%; max-width: 1100px; background: var(--nav); border: 2px solid #bef264; border-radius: 100px; }
+        input { background: rgba(255,255,255,0.05) !important; border: 2px solid rgba(255,255,255,0.1) !important; color: inherit; }
+    </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl">
-        <div class="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-full px-8 py-4 flex justify-between items-center shadow-lg">
-            <div class="text-2xl font-black italic tracking-tighter uppercase">VF<span class="text-orange-500">RRRR</span></div>
-            <div class="flex gap-8 text-[10px] uppercase font-extrabold tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-orange-500 transition">Home</a>
-                <a href="about.html" class="hover:text-orange-500 transition">About</a>
-                <a href="contact.html" class="text-orange-500">Contact</a>
-            </div>
+<body class="antialiased">
+    <nav class="fixed top-10 left-1/2 -translate-x-1/2 z-50 nav-fixed flex justify-between items-center shadow-2xl">
+        <div class="text-3xl font-black italic uppercase">VF<span class="brand-lime">RRRR</span></div>
+        <div class="flex gap-12 text-[10px] font-black uppercase tracking-[0.3em]">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="brand-lime underline decoration-2 underline-offset-8">Contact</a>
         </div>
     </nav>
 
-    <header class="relative h-[33vh] flex items-center justify-center overflow-hidden bg-slate-900">
-        <img id="banner-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-40">
-        <h1 id="title" class="relative z-10 text-white text-5xl md:text-7xl font-black italic uppercase tracking-tighter">Contact</h1>
-    </header>
-
-    <main class="py-16 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
-        <div class="space-y-6">
-            <p id="body" class="text-xl text-slate-500 italic font-medium leading-relaxed border-l-4 border-orange-500 pl-6"></p>
-            <div class="font-extrabold italic text-slate-800 text-sm tracking-widest">HELLO@VFRRRR.COM</div>
+    <main class="pt-56 pb-20 px-8 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-10">
+            <h1 id="title" class="text-7xl md:text-9xl font-black italic uppercase brand-lime leading-none"></h1>
+            <p id="body" class="text-2xl md:text-3xl font-bold italic border-l-8 border-lime-400 pl-10 leading-tight opacity-80"></p>
         </div>
-        <div class="bg-white p-10 rounded-[40px] shadow-2xl shadow-slate-200 border border-white">
-            <form id="leadForm" class="space-y-4">
-                <input type="text" id="custName" placeholder="Tên khách hàng" required class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500 font-bold">
-                <input type="tel" id="custPhone" placeholder="Số điện thoại" required class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500 font-bold">
-                <button type="submit" id="btnSend" class="w-full bg-slate-900 text-white font-extrabold py-5 rounded-2xl uppercase text-[10px] tracking-widest hover:bg-orange-500 transition shadow-xl">Gửi thông tin</button>
+        <div class="bg-[#0c4a6e] p-12 md:p-16 rounded-[60px] border-2 border-lime-400/30 shadow-2xl text-white">
+            <form id="leadForm" class="space-y-6">
+                <input type="text" id="custName" placeholder="Tên của bạn" required class="w-full p-6 rounded-3xl font-bold text-xl outline-none focus:border-lime-400">
+                <input type="tel" id="custPhone" placeholder="Số điện thoại" required class="w-full p-6 rounded-3xl font-bold text-lg outline-none focus:border-lime-400">
+                <button type="submit" id="btnSend" class="w-full bg-lime-400 text-sky-950 font-black py-7 rounded-3xl uppercase tracking-[0.3em] text-xs">Gửi yêu cầu ngay</button>
             </form>
-            <p id="msg" class="mt-6 text-center text-green-600 font-bold italic hidden animate-pulse">✨ Cảm ơn bạn! Chúng tôi sẽ gọi lại ngay.</p>
+            <p id="msg" class="hidden mt-10 text-center text-lime-400 font-black italic text-lg uppercase">✨ Thành công! Chúng tôi sẽ gọi lại.</p>
         </div>
     </main>
 
     <script type="module">
         import { db, doc, getDoc, setDoc } from './db.js';
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
         async function load() {
             const snap = await getDoc(doc(db, 'web_content', 'contact'));
             if(snap.exists()){
-                const d = snap.data();
-                document.getElementById('title').innerText = d.title;
-                document.getElementById('body').innerText = d.body;
-                if(d.bannerUrl) document.getElementById('banner-img').src = d.bannerUrl;
+                document.getElementById('title').innerText = snap.data().title;
+                document.getElementById('body').innerText = snap.data().body;
             }
         }
         load();
-        
         document.getElementById('leadForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('btnSend');
@@ -66,7 +66,7 @@
                 document.getElementById('msg').classList.remove('hidden');
                 document.getElementById('leadForm').reset();
             } catch (err) { alert(err.message); }
-            btn.innerText = "GỬI THÔNG TIN";
+            btn.innerText = "GỬI YÊU CẦU NGAY";
         };
     </script>
 </body>

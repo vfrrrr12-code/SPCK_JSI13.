@@ -3,47 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập vfrrrr Admin</title>
+    <title>Login | vfrrrr Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        /* Đồng bộ phông chữ và loại bỏ hoàn toàn animation */
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: none !important; }
+        body { background-color: #075985; color: #f0f9ff; }
+        .brand-lime { color: #d9f99d; }
+        /* Khung đăng nhập siêu to */
+        .login-card {
+            background: #0c4a6e;
+            border: 4px solid #d9f99d;
+            border-radius: 60px;
+            width: 100%;
+            max-width: 550px;
+            padding: 4rem;
+        }
+        input { 
+            background: rgba(255, 255, 255, 0.05) !important; 
+            border: 2px solid rgba(255, 255, 255, 0.1) !important; 
+            color: white !important; 
+        }
+        input:focus { border-color: #d9f99d !important; outline: none; }
+    </style>
 </head>
-<body class="bg-slate-950 h-screen flex items-center justify-center p-6 font-sans">
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
 
-    <div class="w-full max-w-sm bg-white rounded-[40px] p-10 shadow-[0_20px_50px_rgba(249,115,22,0.3)] text-center relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-2 bg-orange-500"></div>
-        
-        <div class="mb-8">
-            <div class="text-4xl mb-2">🔐</div>
-            <h1 class="text-3xl font-black text-gray-900 italic uppercase">vf<span class="text-orange-500">rrrr</span></h1>
-            <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-2">Hệ thống quản trị</p>
+    <div class="login-card shadow-[0_40px_80px_-15px_rgba(0,0,0,0.6)] text-center">
+        <div class="mb-12">
+            <div class="text-6xl mb-6">🔐</div>
+            <h1 class="text-5xl font-black italic uppercase tracking-tighter">VF<span class="brand-lime">RRRR</span></h1>
+            <p class="text-sky-400 text-xs font-black uppercase tracking-[0.3em] mt-4">Hệ thống quản trị</p>
         </div>
 
-        <div class="space-y-4">
-            <input id="adminKey" type="password" placeholder="Mật khẩu truy cập" 
-                   class="w-full p-4 bg-gray-100 border-none rounded-2xl text-center font-bold outline-none focus:ring-2 focus:ring-orange-500 transition">
+        <div class="space-y-6">
+            <div class="space-y-2 text-left">
+                <label class="text-[10px] font-black uppercase tracking-widest ml-4 text-sky-400">Mật khẩu truy cập</label>
+                <input id="adminKey" type="password" placeholder="••••••••" 
+                       class="w-full p-6 rounded-3xl text-center font-bold text-2xl outline-none">
+            </div>
             
             <button onclick="checkAuth()" 
-                    class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl shadow-lg transition transform active:scale-95 uppercase tracking-widest">
+                    class="w-full bg-lime-400 text-sky-950 font-black py-6 rounded-3xl shadow-xl uppercase tracking-[0.2em] text-sm">
                 Tiến vào Admin
             </button>
         </div>
 
-        <p class="mt-8 text-[10px] text-gray-400 uppercase tracking-tight italic">Thiết bị của bạn sẽ được ghi nhớ trong phiên này</p>
+        <!-- Nút quay về trang chủ -->
+        <div class="mt-12 pt-8 border-t border-white/10">
+            <a href="index.html" class="text-sky-400 hover:text-white font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2">
+                ← Quay về trang chủ
+            </a>
+        </div>
     </div>
 
     <script>
         function checkAuth() {
             const key = document.getElementById('adminKey').value;
-            // Bạn có thể đổi mật khẩu 'vfrrrr123' thành bất cứ thứ gì bạn muốn
+            // Mật khẩu mặc định của dự án
             if (key === 'vfrrrr123') {
                 sessionStorage.setItem("isVfrrrrAdmin", "true");
                 window.location.href = "admin.html";
             } else {
-                alert("Mật khẩu sai rồi! Vui lòng thử lại.");
+                alert("Mật khẩu không chính xác!");
                 document.getElementById('adminKey').value = "";
             }
         }
 
-        // Nhấn Enter để đăng nhập luôn cho tiện
+        // Hỗ trợ nhấn Enter để đăng nhập nhanh
         document.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') checkAuth();
         });

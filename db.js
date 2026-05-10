@@ -1,15 +1,10 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { 
+    getFirestore, collection, getDocs, query, orderBy, doc, getDoc, setDoc 
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyApwan_OSFUPQJkDmsbyP5DRoR8U_IZpOo",
-    authDomain: "vfrrrr-33bc4.firebaseapp.com",
-    projectId: "vfrrrr-33bc4",
-    storageBucket: "vfrrrr-33bc4.firebasestorage.app",
-    messagingSenderId: "494419821595",
-    appId: "1:494419821595:web:969e735c747cf73826a4be"
-};
-
+const firebaseConfig = { projectId: "vfrrrr-33bc4" }; // Thay bằng config đầy đủ của bạn
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export { doc, setDoc, getDoc, collection, onSnapshot, addDoc, serverTimestamp };
+const db = getFirestore(app);
+
+export { db, collection, getDocs, query, orderBy, doc, getDoc, setDoc };

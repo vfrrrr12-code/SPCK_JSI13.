@@ -1,92 +1,150 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - vfrrrr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin CMS | VFRRRR</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>if(sessionStorage.getItem("isVfrrrrAdmin") !== "true") window.location.href="login.html";</script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        /* Đồng bộ phông chữ và tắt mọi hiệu ứng chuyển động */
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: none !important; }
+        
+        :root[data-theme="dark"] {
+            --bg: #071e3d;
+            --text: #f0f9ff;
+            --card-bg: #0c4a6e;
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --nav-bg: #0c4a6e;
+        }
+        :root[data-theme="light"] {
+            --bg: #f0f9ff;
+            --text: #075985;
+            --card-bg: #ffffff;
+            --input-bg: rgba(7, 89, 133, 0.05);
+            --nav-bg: #ffffff;
+        }
+
+        body { background-color: var(--bg); color: var(--text); min-height: 100vh; }
+        .brand-lime { color: #bef264; }
+        
+        /* Menu khổng lồ đồng bộ toàn trang */
+        .nav-giant {
+            padding: 1.5rem 4rem;
+            width: 90%;
+            max-width: 1200px;
+            background: var(--nav-bg);
+            border: 2px solid #bef264;
+            border-radius: 100px;
+        }
+
+        input, textarea, select {
+            background: var(--input-bg) !important;
+            border: 2px solid rgba(186, 230, 253, 0.2) !important;
+            color: var(--text) !important;
+            outline: none;
+        }
+        input:focus, textarea:focus { border-color: #bef264 !important; }
+    </style>
 </head>
-<body class="bg-[#0f172a] text-slate-200 min-h-screen p-4 md:p-10">
-
-    <div class="max-w-5xl mx-auto">
-        <header class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
-            <div>
-                <h1 class="text-3xl font-black italic text-white uppercase tracking-tighter">VFRRRR <span class="text-orange-500">CMS</span></h1>
-                <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">Hệ thống quản trị nội dung v2.0</p>
-            </div>
-            <div class="flex gap-3">
-                <a href="leads.html" class="bg-white/10 hover:bg-white text-white hover:text-slate-950 px-6 py-3 rounded-2xl text-xs font-black uppercase transition-all">📦 Đơn hàng</a>
-                <button onclick="sessionStorage.clear(); location.reload();" class="bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 px-6 py-3 rounded-2xl text-xs font-black uppercase transition-all">Thoát</button>
-            </div>
-        </header>
-
-        <div class="grid lg:grid-cols-3 gap-8">
-            <div class="space-y-4">
-                <label class="text-xs font-black uppercase text-slate-500 ml-4">Chọn trang chỉnh sửa</label>
-                <select id="slug" class="w-full p-5 rounded-[24px] bg-slate-800 border border-slate-700 outline-none font-bold text-white focus:ring-2 focus:ring-orange-500 transition-all appearance-none cursor-pointer">
-                    <option value="home">🏠 TRANG CHỦ</option>
-                    <option value="about">ℹ️ GIỚI THIỆU</option>
-                    <option value="contact">📞 LIÊN HỆ</option>
-                </select>
-            </div>
-
-            <div class="lg:col-span-2 space-y-6 bg-slate-800/50 p-8 rounded-[40px] border border-white/5">
-                <div>
-                    <label class="block text-xs font-black uppercase text-slate-500 mb-2 ml-2">Tiêu đề chính</label>
-                    <input id="t" type="text" class="w-full p-4 rounded-2xl bg-slate-900 border border-slate-700 focus:border-orange-500 outline-none transition-all text-white font-bold">
-                </div>
-                <div>
-                    <label class="block text-xs font-black uppercase text-slate-500 mb-2 ml-2">Mô tả ngắn</label>
-                    <textarea id="b" rows="3" class="w-full p-4 rounded-2xl bg-slate-900 border border-slate-700 focus:border-orange-500 outline-none transition-all text-white"></textarea>
-                </div>
-                <div>
-                    <label class="block text-xs font-black uppercase text-slate-500 mb-2 ml-2">Nội dung chi tiết</label>
-                    <textarea id="sb" rows="6" class="w-full p-4 rounded-2xl bg-slate-900 border border-slate-700 focus:border-orange-500 outline-none transition-all text-white"></textarea>
-                </div>
-                <div>
-                    <label class="block text-xs font-black uppercase text-slate-500 mb-2 ml-2">URL Ảnh Banner</label>
-                    <input id="u" type="text" class="w-full p-4 rounded-2xl bg-slate-900 border border-slate-700 focus:border-orange-500 outline-none transition-all text-white text-sm">
-                </div>
-
-                <button id="btnSave" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-5 rounded-2xl shadow-xl shadow-orange-900/20 transition-all transform active:scale-[0.98] uppercase tracking-widest">
-                    Cập nhật nội dung
-                </button>
-            </div>
+<body class="antialiased pb-20">
+    <!-- Thanh điều hướng trung tâm -->
+    <nav class="fixed top-10 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-2xl">
+        <div class="text-3xl font-black italic uppercase">VF<span class="brand-lime">RRRR</span></div>
+        <div class="flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.3em]">
+            <a href="admin.html" class="brand-lime underline underline-offset-8 decoration-2">CMS</a>
+            <a href="leads.html">Leads</a>
+            <a href="index.html">View Site</a>
         </div>
-    </div>
+    </nav>
+
+    <main class="pt-56 px-8 max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+            <h1 class="text-6xl md:text-8xl font-black italic uppercase tracking-tighter leading-none">
+                Content <span class="brand-lime">Manager</span>
+            </h1>
+            <select id="pageSelect" onchange="loadData()" class="p-5 rounded-2xl font-black uppercase tracking-widest text-xs cursor-pointer">
+                <option value="home">Trang Chủ</option>
+                <option value="about">Giới Thiệu</option>
+                <option value="contact">Liên Hệ</option>
+            </select>
+        </div>
+
+        <!-- Khung chỉnh sửa nội dung khổng lồ -->
+        <div style="background: var(--card-bg)" class="p-10 md:p-16 rounded-[60px] border-2 border-white/5 shadow-2xl space-y-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="space-y-3">
+                    <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Tiêu đề chính (Title)</label>
+                    <input type="text" id="title" class="w-full p-7 rounded-3xl font-black text-2xl uppercase italic">
+                </div>
+                <div class="space-y-3">
+                    <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Ảnh nền (Banner URL)</label>
+                    <input type="text" id="bannerUrl" class="w-full p-7 rounded-3xl font-medium">
+                </div>
+            </div>
+            
+            <div class="space-y-3">
+                <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Mô tả ngắn (Body)</label>
+                <textarea id="body" rows="3" class="w-full p-8 rounded-[40px] font-bold text-xl italic"></textarea>
+            </div>
+
+            <div class="space-y-3">
+                <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Nội dung chi tiết (SubBody)</label>
+                <textarea id="subBody" rows="6" class="w-full p-8 rounded-[40px] font-medium text-lg leading-relaxed"></textarea>
+            </div>
+
+            <button onclick="saveData()" class="w-full bg-[#bef264] text-[#075985] font-black py-8 rounded-[40px] uppercase tracking-[0.6em] text-xs shadow-xl active:scale-95">
+                Cập nhật cấu hình ngay
+            </button>
+        </div>
+    </main>
 
     <script type="module">
         import { db, doc, getDoc, setDoc } from './db.js';
-        const fields = { slug: 'slug', t: 't', b: 'b', sb: 'sb', u: 'u', btn: 'btnSave' };
-        const getEl = id => document.getElementById(fields[id]);
 
-        async function loadContent() {
-            const snap = await getDoc(doc(db, "web_content", getEl('slug').value));
-            if(snap.exists()){
-                const d = snap.data();
-                getEl('t').value = d.title || "";
-                getEl('b').value = d.body || "";
-                getEl('sb').value = d.subBody || "";
-                getEl('u').value = d.bannerUrl || "";
-            }
-        }
+        // Bảo mật và Theme
+        if (sessionStorage.getItem("isVfrrrrAdmin") !== "true") window.location.href = "login.html";
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
 
-        getEl('slug').onchange = loadContent;
-        window.onload = loadContent;
-
-        getEl('btn').onclick = async () => {
-            getEl('btn').innerText = "ĐANG LƯU...";
+        // Hàm tải dữ liệu trang
+        window.loadData = async () => {
+            const page = document.getElementById('pageSelect').value;
             try {
-                await setDoc(doc(db, "web_content", getEl('slug').value), {
-                    title: getEl('t').value,
-                    body: getEl('b').value,
-                    subBody: getEl('sb').value,
-                    bannerUrl: getEl('u').value
-                });
-                alert("Đã lưu thành công!");
-            } catch (e) { alert("Lỗi: " + e.message); }
-            getEl('btn').innerText = "CẬP NHẬT NỘI DUNG";
+                const snap = await getDoc(doc(db, 'web_content', page));
+                if(snap.exists()){
+                    const d = snap.data();
+                    document.getElementById('title').value = d.title || '';
+                    document.getElementById('body').value = d.body || '';
+                    document.getElementById('subBody').value = d.subBody || '';
+                    document.getElementById('bannerUrl').value = d.bannerUrl || '';
+                }
+            } catch (e) { console.error("Lỗi tải dữ liệu:", e); }
         };
+
+        // Hàm lưu dữ liệu vào Firebase
+        window.saveData = async () => {
+            const page = document.getElementById('pageSelect').value;
+            const btn = document.querySelector('button');
+            btn.innerText = "ĐANG LƯU HỆ THỐNG...";
+            
+            try {
+                await setDoc(doc(db, 'web_content', page), {
+                    title: document.getElementById('title').value,
+                    body: document.getElementById('body').value,
+                    subBody: document.getElementById('subBody').value,
+                    bannerUrl: document.getElementById('bannerUrl').value
+                });
+                alert("Hệ thống vfrrrr đã được cập nhật thành công!");
+            } catch (e) { 
+                alert("Lỗi lưu trữ: " + e.message); 
+            } finally {
+                btn.innerText = "CẬP NHẬT CẤU HÌNH NGAY";
+            }
+        };
+
+        // Khởi tạo trang
+        loadData();
     </script>
 </body>
 </html>

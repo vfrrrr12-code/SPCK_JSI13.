@@ -1,67 +1,109 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới Thiệu - VFRRRR</title>
+    <title>About | VFRRRR Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif !important; }
-        body { background-color: #f8fafc; color: #0f172a; }
-        .text-gradient {
-            background: linear-gradient(to right, #0f172a, #f97316);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Loại bỏ chuyển động để đạt tốc độ tải tức thì */
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: none !important; }
+        
+        :root[data-theme="dark"] {
+            --bg: #071e3d;
+            --text: #f0f9ff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --nav-bg: #0c4a6e;
+            --sub-text: rgba(240, 249, 255, 0.6);
         }
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
+        :root[data-theme="light"] {
+            --bg: #f0f9ff;
+            --text: #075985;
+            --card-bg: rgba(7, 89, 133, 0.05);
+            --nav-bg: #ffffff;
+            --sub-text: rgba(7, 89, 133, 0.7);
+        }
+
+        body { background-color: var(--bg); color: var(--text); min-height: 100vh; }
+        .brand-lime { color: #bef264; }
+        
+        /* Menu khổng lồ cố định */
+        .nav-giant {
+            padding: 1.5rem 4rem;
+            width: 90%;
+            max-width: 1200px;
+            background: var(--nav-bg);
+            border: 2px solid #bef264;
+            border-radius: 100px;
+            backdrop-filter: blur(15px);
+        }
+
+        /* Khối nội dung kính mờ */
+        .glass-box {
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(186, 230, 253, 0.2);
+            border-radius: 60px;
         }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl">
-        <div class="glass-nav border border-slate-200 rounded-full px-8 py-4 flex justify-between items-center shadow-lg">
-            <div class="text-2xl font-black italic tracking-tighter uppercase">VF<span class="text-orange-500">RRRR</span></div>
-            <div class="flex gap-8 text-[10px] uppercase font-extrabold tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-orange-500 transition">Home</a>
-                <a href="about.html" class="text-orange-500">About</a>
-                <a href="contact.html" class="hover:text-orange-500 transition">Contact</a>
-            </div>
+<body class="antialiased pb-24">
+    <!-- Điều hướng trung tâm -->
+    <nav class="fixed top-10 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-2xl">
+        <div class="text-3xl font-black italic uppercase tracking-tighter">VF<span class="brand-lime">RRRR</span></div>
+        <div class="flex gap-12 text-[10px] font-black uppercase tracking-[0.3em]">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="brand-lime underline underline-offset-8 decoration-2">About</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 
-    <main class="flex-grow pt-44 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h1 id="title" class="text-gradient text-6xl md:text-8xl font-black italic uppercase tracking-tighter mb-8 leading-none">Loading...</h1>
-            <p id="body" class="text-xl md:text-2xl text-slate-500 font-medium italic mb-12 leading-relaxed border-l-4 border-orange-500 pl-8"></p>
-            <div id="subBody" class="bg-white p-10 md:p-16 rounded-[50px] shadow-sm border border-slate-100 italic text-slate-600 leading-loose text-lg"></div>
-            <div class="mt-16 text-center">
-                <a href="contact.html" class="inline-block bg-slate-900 text-white px-12 py-5 rounded-full font-extrabold uppercase tracking-widest text-[10px] hover:bg-orange-500 transition-all shadow-xl active:scale-95">Bắt đầu hợp tác ngay</a>
+    <main class="pt-60 px-8 max-w-6xl mx-auto">
+        <!-- Tiêu đề khổng lồ -->
+        <h1 id="title" class="text-7xl md:text-[11rem] font-black italic uppercase tracking-tighter leading-[0.8] brand-lime mb-16"></h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <!-- Cột trái: Tuyên ngôn -->
+            <div class="md:col-span-7">
+                <p id="body" class="text-3xl md:text-5xl font-bold italic leading-tight border-l-[12px] border-lime-400 pl-12 mb-12 opacity-90"></p>
             </div>
+
+            <!-- Cột phải: Chi tiết -->
+            <div class="md:col-span-5">
+                <div id="subBody" style="color: var(--sub-text)" class="glass-box p-12 text-xl md:text-2xl font-medium leading-relaxed italic"></div>
+            </div>
+        </div>
+
+        <!-- Khối trang trí thương hiệu -->
+        <div class="mt-24 py-12 border-t-2 border-lime-400/20 flex justify-between items-center">
+            <div class="text-[10px] font-black uppercase tracking-[1em] opacity-30">Innovation Studio / Est 2026</div>
+            <div class="h-[2px] flex-1 mx-12 bg-lime-400/20"></div>
+            <div class="text-2xl font-black italic brand-lime uppercase">vfrrrr</div>
         </div>
     </main>
 
-    <footer class="py-12 text-center border-t border-slate-200 bg-white mt-20">
-        <div class="text-[10px] text-slate-300 font-bold tracking-[0.5em] uppercase italic">© 2026 vfrrrr studio • Innovation First</div>
-    </footer>
-
     <script type="module">
         import { db, doc, getDoc } from './db.js';
+
+        // Đồng bộ hóa giao diện Sáng/Tối
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
         async function load() {
             try {
                 const snap = await getDoc(doc(db, 'web_content', 'about'));
                 if(snap.exists()){
                     const d = snap.data();
-                    document.getElementById('title').innerText = d.title;
-                    document.getElementById('body').innerText = d.body;
-                    document.getElementById('subBody').innerHTML = d.subBody ? d.subBody.replace(/\n/g, '<br>') : "Dữ liệu đang cập nhật...";
+                    document.getElementById('title').innerText = d.title || "ABOUT US";
+                    document.getElementById('body').innerText = d.body || "Innovation through minimalism.";
+                    document.getElementById('subBody').innerHTML = d.subBody ? d.subBody.replace(/\n/g, '<br>') : "No content available.";
                 }
-            } catch (err) { console.error(err); }
+            } catch (e) {
+                console.error("Lỗi tải dữ liệu About:", e);
+            }
         }
+        
         load();
     </script>
 </body>
