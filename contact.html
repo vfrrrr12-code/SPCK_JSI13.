@@ -1,124 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | VFRRRR</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
-        
-        /* BẢNG MÀU ĐỒNG NHẤT HỆ THỐNG */
-        :root[data-theme="dark"] {
-            --bg: #030a1c;
-            --text-hero: #ffffff;
-            --text-body: #f0f9ff;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(186, 230, 253, 0.1);
-            --nav-bg: rgba(7, 30, 61, 0.5);
-            --nav-text: #ffffff;
-            --form-bg: #0c4a6e;
-        }
-        :root[data-theme="light"] {
-            --bg: #f8fafc;
-            --text-hero: #0f172a;
-            --text-body: #334155;
-            --card-bg: rgba(15, 23, 42, 0.04);
-            --card-border: rgba(15, 23, 42, 0.08);
-            --nav-bg: rgba(255, 255, 255, 0.85);
-            --nav-text: #0f172a;
-            --form-bg: #0284c7;
-        }
+      * {
+        font-family: "Plus Jakarta Sans", sans-serif !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
 
-        body { background: var(--bg); color: var(--text-body); }
-        .brand-lime { color: #bef264; }
-        
-        .nav-giant {
-            padding: 1rem 3rem;
-            width: 90%;
-            max-width: 1100px;
-            background: var(--nav-bg);
-            border: 1px solid rgba(190, 242, 100, 0.4);
-            border-radius: 100px;
-            backdrop-filter: blur(15px);
-        }
+      /* BẢNG MÀU ĐỒNG NHẤT HỆ THỐNG */
+      :root[data-theme="dark"] {
+        --bg: #030a1c;
+        --text-hero: #ffffff;
+        --text-body: #f0f9ff;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-border: rgba(186, 230, 253, 0.1);
+        --nav-bg: rgba(7, 30, 61, 0.5);
+        --nav-text: #ffffff;
+        --form-bg: #0c4a6e;
+      }
+      :root[data-theme="light"] {
+        --bg: #f8fafc;
+        --text-hero: #0f172a;
+        --text-body: #334155;
+        --card-bg: rgba(15, 23, 42, 0.04);
+        --card-border: rgba(15, 23, 42, 0.08);
+        --nav-bg: rgba(255, 255, 255, 0.85);
+        --nav-text: #0f172a;
+        --form-bg: #0284c7;
+      }
 
-        .nav-text-color {
-            color: var(--nav-text);
-        }
+      body {
+        background: var(--bg);
+        color: var(--text-body);
+      }
+      .brand-lime {
+        color: #bef264;
+      }
 
-        .form-box {
-            background: var(--form-bg);
-        }
+      .nav-giant {
+        padding: 1rem 3rem;
+        width: 90%;
+        max-width: 1100px;
+        background: var(--nav-bg);
+        border: 1px solid rgba(190, 242, 100, 0.4);
+        border-radius: 100px;
+        backdrop-filter: blur(15px);
+      }
 
-        input { background: rgba(255,255,255,0.05) !important; border: 2px solid rgba(255,255,255,0.1) !important; color: white !important; }
-        input:focus { border-color: #bef264 !important; outline: none; }
+      .nav-text-color {
+        color: var(--nav-text);
+      }
+
+      .form-box {
+        background: var(--form-bg);
+      }
+
+      input {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+      }
+      input:focus {
+        border-color: #bef264 !important;
+        outline: none;
+      }
     </style>
-</head>
-<body class="antialiased">
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-xl">
-        <div class="text-xl font-black italic uppercase nav-text-color tracking-wider">VF<span class="text-[#bef264]">RRRR</span></div>
-        <div class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
-            <a href="index.html" class="opacity-60 hover:opacity-100 nav-text-color">Home</a>
-            <a href="about.html" class="opacity-60 hover:opacity-100 nav-text-color">About</a>
-            <a href="contact.html" class="text-[#bef264]">Contact</a>
-            <button onclick="toggleTheme()" class="p-1 bg-white/10 dark:bg-black/10 rounded-full text-xs">🌓</button>
-        </div>
+  </head>
+  <body class="antialiased">
+    <nav
+      class="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-xl"
+    >
+      <div
+        class="text-xl font-black italic uppercase nav-text-color tracking-wider"
+      >
+        THCS và THPT<span class="text-[#bef264]">Nguyễn Tất Thành</span>
+      </div>
+      <div
+        class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]"
+      >
+        <a href="index.html" class="opacity-60 hover:opacity-100 nav-text-color"
+          >Home</a
+        >
+        <a href="about.html" class="opacity-60 hover:opacity-100 nav-text-color"
+          >About</a
+        >
+        <a href="contact.html" class="text-[#bef264]">Contact</a>
+        <button
+          onclick="toggleTheme()"
+          class="p-1 bg-white/10 dark:bg-black/10 rounded-full text-xs"
+        >
+          🌓
+        </button>
+      </div>
     </nav>
 
-    <main class="pt-64 pb-20 px-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        <div class="space-y-10">
-            <h1 id="title" style="color: var(--text-hero);" class="text-6xl md:text-8xl font-black italic uppercase leading-none mb-4">LOADING...</h1>
-            <p id="body" class="text-xl md:text-2xl font-bold italic border-l-[6px] border-[#bef264] pl-10 py-3 opacity-90 leading-relaxed"></p>
-        </div>
-        <div class="form-box p-12 md:p-14 rounded-[40px] border-2 border-lime-400/20 shadow-2xl text-white">
-            <form id="leadForm" class="space-y-6">
-                <input type="text" id="custName" placeholder="Tên của bạn" required class="w-full p-5 rounded-2xl font-bold text-lg outline-none">
-                <input type="tel" id="custPhone" placeholder="Số điện thoại" required class="w-full p-5 rounded-2xl font-bold text-base outline-none">
-                <button type="submit" id="btnSend" class="w-full bg-[#bef264] text-sky-950 font-black py-6 rounded-2xl uppercase tracking-[0.3em] text-xs transition duration-200 active:scale-95">Gửi yêu cầu ngay</button>
-            </form>
-            <p id="msg" class="hidden mt-10 text-center text-[#bef264] font-black italic text-lg uppercase tracking-wider">✨ Thành công! Chúng tôi sẽ gọi lại.</p>
-        </div>
+    <main
+      class="pt-64 pb-20 px-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center"
+    >
+      <div class="space-y-10">
+        <h1
+          id="title"
+          style="color: var(--text-hero)"
+          class="text-6xl md:text-8xl font-black italic uppercase leading-none mb-4"
+        >
+          LOADING...
+        </h1>
+        <p
+          id="body"
+          class="text-xl md:text-2xl font-bold italic border-l-[6px] border-[#bef264] pl-10 py-3 opacity-90 leading-relaxed"
+        ></p>
+      </div>
+      <div
+        class="form-box p-12 md:p-14 rounded-[40px] border-2 border-lime-400/20 shadow-2xl text-white"
+      >
+        <form id="leadForm" class="space-y-6">
+          <input
+            type="text"
+            id="custName"
+            placeholder="Tên của bạn"
+            required
+            class="w-full p-5 rounded-2xl font-bold text-lg outline-none"
+          />
+          <input
+            type="tel"
+            id="custPhone"
+            placeholder="Số điện thoại"
+            required
+            class="w-full p-5 rounded-2xl font-bold text-base outline-none"
+          />
+          <button
+            type="submit"
+            id="btnSend"
+            class="w-full bg-[#bef264] text-sky-950 font-black py-6 rounded-2xl uppercase tracking-[0.3em] text-xs transition duration-200 active:scale-95"
+          >
+            Gửi yêu cầu ngay
+          </button>
+        </form>
+        <p
+          id="msg"
+          class="hidden mt-10 text-center text-[#bef264] font-black italic text-lg uppercase tracking-wider"
+        >
+          ✨ Thành công! Chúng tôi sẽ gọi lại.
+        </p>
+      </div>
     </main>
 
     <script type="module">
-        import { db, doc, getDoc, setDoc } from './db.js';
+      import { db, doc, getDoc, setDoc } from "./db.js";
 
-        window.toggleTheme = () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const target = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', target);
-            localStorage.setItem('theme', target);
-        };
-        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+      window.toggleTheme = () => {
+        const current = document.documentElement.getAttribute("data-theme");
+        const target = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", target);
+        localStorage.setItem("theme", target);
+      };
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("theme") || "dark",
+      );
 
-        async function load() {
-            try {
-                const snap = await getDoc(doc(db, 'web_content', 'contact'));
-                if(snap.exists()){
-                    document.getElementById('title').innerText = snap.data().title || "CONTACT";
-                    document.getElementById('body').innerText = snap.data().body || "Get in touch.";
-                }
-            } catch(e) { console.error(e); }
+      async function load() {
+        try {
+          const snap = await getDoc(doc(db, "web_content", "contact"));
+          if (snap.exists()) {
+            document.getElementById("title").innerText =
+              snap.data().title || "CONTACT";
+            document.getElementById("body").innerText =
+              snap.data().body || "Get in touch.";
+          }
+        } catch (e) {
+          console.error(e);
         }
-        load();
+      }
+      load();
 
-        document.getElementById('leadForm').onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('btnSend');
-            btn.innerText = "ĐANG GỬI...";
-            try {
-                await setDoc(doc(db, 'customer_leads', 'id_' + Date.now()), {
-                    name: document.getElementById('custName').value,
-                    phone: document.getElementById('custPhone').value,
-                    time: new Date().toLocaleString()
-                });
-                document.getElementById('msg').classList.remove('hidden');
-                document.getElementById('leadForm').reset();
-            } catch (err) { alert(err.message); }
-            btn.innerText = "GỬI YÊU CẦU NGAY";
-        };
+      document.getElementById("leadForm").onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("btnSend");
+        btn.innerText = "ĐANG GỬI...";
+        try {
+          await setDoc(doc(db, "customer_leads", "id_" + Date.now()), {
+            name: document.getElementById("custName").value,
+            phone: document.getElementById("custPhone").value,
+            time: new Date().toLocaleString(),
+          });
+          document.getElementById("msg").classList.remove("hidden");
+          document.getElementById("leadForm").reset();
+        } catch (err) {
+          alert(err.message);
+        }
+        btn.innerText = "GỬI YÊU CẦU NGAY";
+      };
     </script>
-</body>
+  </body>
 </html>

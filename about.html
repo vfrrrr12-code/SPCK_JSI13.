@@ -1,152 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | VFRRRR Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
-        
-        /* BẢNG MÀU ĐỒNG NHẤT HỆ THỐNG */
-        :root[data-theme="dark"] {
-            --bg: #030a1c;
-            --text-hero: #ffffff;
-            --text-body: #f0f9ff;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(186, 230, 253, 0.1);
-            --nav-bg: rgba(7, 30, 61, 0.5);
-            --nav-text: #ffffff;
-            --sub-text: rgba(240, 249, 255, 0.6);
-        }
-        :root[data-theme="light"] {
-            --bg: #f8fafc;
-            --text-hero: #0f172a;
-            --text-body: #334155;
-            --card-bg: rgba(15, 23, 42, 0.04);
-            --card-border: rgba(15, 23, 42, 0.08);
-            --nav-bg: rgba(255, 255, 255, 0.85);
-            --nav-text: #0f172a;
-            --sub-text: rgba(15, 23, 42, 0.65);
-        }
+      * {
+        font-family: "Plus Jakarta Sans", sans-serif !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
 
-        body { background-color: var(--bg); color: var(--text-body); }
-        .brand-lime { color: #bef264; }
-        
-        .nav-giant {
-            padding: 1rem 3rem;
-            width: 90%;
-            max-width: 1100px;
-            background: var(--nav-bg);
-            border: 1px solid rgba(190, 242, 100, 0.4);
-            border-radius: 100px;
-            backdrop-filter: blur(15px);
-        }
+      /* BẢNG MÀU ĐỒNG NHẤT HỆ THỐNG */
+      :root[data-theme="dark"] {
+        --bg: #030a1c;
+        --text-hero: #ffffff;
+        --text-body: #f0f9ff;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-border: rgba(186, 230, 253, 0.1);
+        --nav-bg: rgba(7, 30, 61, 0.5);
+        --nav-text: #ffffff;
+        --sub-text: rgba(240, 249, 255, 0.6);
+      }
 
-        .nav-text-color {
-            color: var(--nav-text);
-        }
+      :root[data-theme="light"] {
+        --bg: #f8fafc;
+        --text-hero: #0f172a;
+        --text-body: #334155;
+        --card-bg: rgba(15, 23, 42, 0.04);
+        --card-border: rgba(15, 23, 42, 0.08);
+        --nav-bg: rgba(255, 255, 255, 0.85);
+        --nav-text: #0f172a;
+        --sub-text: rgba(15, 23, 42, 0.65);
+      }
 
-        /* Bento Grid Styles */
+      body {
+        background-color: var(--bg);
+        color: var(--text-body);
+      }
+
+      .brand-lime {
+        color: #bef264;
+      }
+
+      .nav-giant {
+        padding: 1rem 3rem;
+        width: 90%;
+        max-width: 1100px;
+        background: var(--nav-bg);
+        border: 1px solid rgba(190, 242, 100, 0.4);
+        border-radius: 100px;
+        backdrop-filter: blur(15px);
+      }
+
+      .nav-text-color {
+        color: var(--nav-text);
+      }
+
+      /* Bento Grid Styles */
+      .bento-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(180px, auto);
+        gap: 1.5rem;
+      }
+
+      .bento-item {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--card-border);
+        border-radius: 32px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .bento-item:hover {
+        border-color: rgba(190, 242, 100, 0.4);
+      }
+
+      .item-large {
+        grid-column: span 4;
+        grid-row: span 2;
+      }
+
+      .item-medium {
+        grid-column: span 2;
+      }
+
+      .item-tall {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      @media (max-width: 768px) {
         .bento-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(180px, auto);
-            gap: 1.5rem;
+          grid-template-columns: repeat(1, 1fr);
         }
 
-        .bento-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 32px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .item-large,
+        .item-medium,
+        .item-tall {
+          grid-column: span 1;
+          grid-row: auto;
         }
-
-        .bento-item:hover {
-            border-color: rgba(190, 242, 100, 0.4);
-        }
-
-        .item-large { grid-column: span 4; grid-row: span 2; }
-        .item-medium { grid-column: span 2; }
-        .item-tall { grid-column: span 2; grid-row: span 2; }
-
-        @media (max-width: 768px) {
-            .bento-container { grid-template-columns: repeat(1, 1fr); }
-            .item-large, .item-medium, .item-tall { grid-column: span 1; grid-row: auto; }
-        }
+      }
     </style>
-</head>
-<body class="antialiased pb-24">
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-xl">
-        <div class="text-xl font-black italic uppercase nav-text-color tracking-wider">VF<span class="text-[#bef264]">RRRR</span></div>
-        <div class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
-            <a href="index.html" class="opacity-60 hover:opacity-100 nav-text-color">Home</a>
-            <a href="about.html" class="text-[#bef264]">About</a>
-            <a href="contact.html" class="opacity-60 hover:opacity-100 nav-text-color">Contact</a>
-            <button onclick="toggleTheme()" class="p-1 bg-white/10 dark:bg-black/10 rounded-full text-xs">🌓</button>
-        </div>
+  </head>
+
+  <body class="antialiased pb-24">
+    <nav
+      class="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-xl"
+    >
+      <div
+        class="text-xl font-black italic uppercase nav-text-color tracking-wider"
+      >
+        THCS và THPT<span class="text-[#bef264]">Nguyễn Tất Thành</span>
+      </div>
+      <div
+        class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]"
+      >
+        <a href="index.html" class="opacity-60 hover:opacity-100 nav-text-color"
+          >Home</a
+        >
+        <a href="about.html" class="text-[#bef264]">About</a>
+        <a
+          href="contact.html"
+          class="opacity-60 hover:opacity-100 nav-text-color"
+          >Contact</a
+        >
+        <button
+          onclick="toggleTheme()"
+          class="p-1 bg-white/10 dark:bg-black/10 rounded-full text-xs"
+        >
+          🌓
+        </button>
+      </div>
     </nav>
 
     <main class="pt-64 px-6 max-w-5xl mx-auto">
-        <div class="bento-container">
-            <div class="bento-item item-large">
-                <h1 id="title" style="color: var(--text-hero);" class="text-6xl md:text-8xl font-black italic uppercase tracking-tighter leading-none mb-4">LOADING...</h1>
-                <p class="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">Innovation Studio / Global Vision</p>
-            </div>
-
-            <div class="bento-item item-tall border-l-[6px] border-[#bef264]">
-                <p id="body" style="color: var(--text-hero);" class="text-2xl md:text-3xl font-bold italic leading-tight opacity-90"></p>
-            </div>
-
-            <div class="bento-item item-tall">
-                <div id="subBody" style="color: var(--sub-text)" class="text-base md:text-lg font-medium leading-relaxed italic whitespace-pre-line font-sans"></div>
-            </div>
-
-            <div class="bento-item item-medium items-center">
-                <div class="text-5xl font-black brand-lime">2026</div>
-                <div class="text-[10px] uppercase tracking-widest opacity-50">Established Year</div>
-            </div>
-
-            <div class="bento-item item-medium items-center">
-                <div class="text-5xl font-black brand-lime">VFRRRR</div>
-                <div class="text-[10px] uppercase tracking-widest opacity-50">Digital Craftsmanship</div>
-            </div>
+      <div class="bento-container">
+        <div class="bento-item item-large">
+          <h1
+            id="title"
+            style="color: var(--text-hero)"
+            class="text-6xl md:text-8xl font-black italic uppercase tracking-tighter leading-none mb-4"
+          >
+            LOADING...
+          </h1>
+          <p
+            class="text-[10px] font-black uppercase tracking-[0.5em] opacity-40"
+          >
+            Innovation Studio / Global Vision
+          </p>
         </div>
 
-        <div class="mt-24 py-12 border-t border-white/5 flex justify-between items-center opacity-30 hover:opacity-100">
-            <div class="text-[9px] font-black uppercase tracking-[0.6em]">VF RRRR STUDIO / EST 2026</div>
-            <div class="text-[9px] font-black uppercase tracking-[0.3em]">© ALL RIGHTS RESERVED</div>
+        <div class="bento-item item-tall border-l-[6px] border-[#bef264]">
+          <p
+            id="body"
+            style="color: var(--text-hero)"
+            class="text-2xl md:text-3xl font-bold italic leading-tight opacity-90"
+          ></p>
         </div>
+
+        <div class="bento-item item-tall">
+          <div
+            id="subBody"
+            style="color: var(--sub-text)"
+            class="text-base md:text-lg font-medium leading-relaxed italic whitespace-pre-line font-sans"
+          ></div>
+        </div>
+
+        <div class="bento-item item-medium items-center">
+          <div class="text-5xl font-black brand-lime">2026</div>
+          <div class="text-[10px] uppercase tracking-widest opacity-50">
+            Established Year
+          </div>
+        </div>
+
+        <div class="bento-item item-medium items-center">
+          <div class="text-5xl font-black brand-lime">THCS và THPT Nguyễn Tất Thành</div>
+          <div class="text-[10px] uppercase tracking-widest opacity-50">
+            Digital Craftsmanship
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mt-24 py-12 border-t border-white/5 flex justify-between items-center opacity-30 hover:opacity-100"
+      >
+        <div class="text-[9px] font-black uppercase tracking-[0.6em]">
+          THCS và THPT Nguyễn Tất Thành / EST 2026
+        </div>
+        <div class="text-[9px] font-black uppercase tracking-[0.3em]">
+          © ALL RIGHTS RESERVED
+        </div>
+      </div>
     </main>
 
     <script type="module">
-        import { db, doc, getDoc } from './db.js';
+      import { db, doc, getDoc } from "./db.js";
 
-        window.toggleTheme = () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const target = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', target);
-            localStorage.setItem('theme', target);
-        };
-        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+      window.toggleTheme = () => {
+        const current = document.documentElement.getAttribute("data-theme");
+        const target = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", target);
+        localStorage.setItem("theme", target);
+      };
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("theme") || "dark",
+      );
 
-        async function load() {
-            try {
-                const snap = await getDoc(doc(db, 'web_content', 'about'));
-                if(snap.exists()){
-                    const d = snap.data();
-                    document.getElementById('title').innerText = d.title || "ABOUT";
-                    document.getElementById('body').innerText = d.body || "Innovation through minimalism.";
-                    document.getElementById('subBody').innerHTML = d.subBody ? d.subBody.replace(/\n/g, '<br>') : "No content available.";
-                }
-            } catch (e) { console.error("Lỗi tải dữ liệu Bento:", e); }
+      async function load() {
+        try {
+          const snap = await getDoc(doc(db, "web_content", "about"));
+          if (snap.exists()) {
+            const d = snap.data();
+            document.getElementById("title").innerText = d.title || "ABOUT";
+            document.getElementById("body").innerText =
+              d.body || "Innovation through minimalism.";
+            document.getElementById("subBody").innerHTML = d.subBody
+              ? d.subBody.replace(/\n/g, "<br>")
+              : "No content available.";
+          }
+        } catch (e) {
+          console.error("Lỗi tải dữ liệu Bento:", e);
         }
-        load();
+      }
+      load();
     </script>
-</body>
+  </body>
 </html>
