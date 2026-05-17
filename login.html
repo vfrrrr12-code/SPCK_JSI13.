@@ -1,67 +1,156 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | vfrrrr Admin</title>
+    <title>Login | VFRRRR Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
-        /* Đồng bộ phông chữ và loại bỏ hoàn toàn animation */
-        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: none !important; }
-        body { background-color: #075985; color: #f0f9ff; }
-        .brand-lime { color: #d9f99d; }
-        /* Khung đăng nhập siêu to */
-        .login-card {
-            background: #0c4a6e;
-            border: 4px solid #d9f99d;
-            border-radius: 60px;
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: all 0.3s ease !important; }
+        
+        :root[data-theme="dark"] {
+            --bg: #030a1c;
+            --text: #f0f9ff;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(186, 230, 253, 0.1);
+            --lime: #bef264;
+        }
+
+        body { 
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brand-lime { color: var(--lime); }
+
+        /* Split Layout Container */
+        .split-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
             width: 100%;
-            max-width: 550px;
-            padding: 4rem;
+            max-width: 1200px;
+            height: 600px;
+            gap: 2rem;
+            padding: 2rem;
         }
-        input { 
-            background: rgba(255, 255, 255, 0.05) !important; 
-            border: 2px solid rgba(255, 255, 255, 0.1) !important; 
-            color: white !important; 
+
+        /* Bên trái: Brand Content */
+        .brand-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 4rem;
         }
-        input:focus { border-color: #d9f99d !important; outline: none; }
+
+        /* Bên phải: Login Card */
+        .login-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bento-login-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 3rem;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid var(--card-border) !important;
+            color: white !important;
+            border-radius: 20px;
+            padding: 1.25rem;
+            width: 100%;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        input:focus {
+            border-color: var(--lime) !important;
+            outline: none;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .btn-login {
+            background-color: var(--lime);
+            color: #075985;
+            width: 100%;
+            padding: 1.25rem;
+            border-radius: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .btn-login:hover {
+            transform: scale(0.98);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 900px) {
+            .split-container { grid-template-columns: 1fr; height: auto; text-align: center; }
+            .brand-section { padding-right: 0; margin-bottom: 3rem; }
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6">
+<body class="antialiased">
 
-    <div class="login-card shadow-[0_40px_80px_-15px_rgba(0,0,0,0.6)] text-center">
-        <div class="mb-12">
-            <div class="text-6xl mb-6">🔐</div>
-            <h1 class="text-5xl font-black italic uppercase tracking-tighter">VF<span class="brand-lime">RRRR</span></h1>
-            <p class="text-sky-400 text-xs font-black uppercase tracking-[0.3em] mt-4">Hệ thống quản trị</p>
+    <div class="split-container">
+        <div class="brand-section">
+            <h1 class="text-7xl md:text-8xl font-black italic uppercase tracking-tighter leading-none mb-6">
+                VF<span class="brand-lime">RRRR</span>
+            </h1>
+            <p class="text-3xl md:text-4xl font-bold italic opacity-80 leading-tight">
+                Admin <br> <span class="brand-lime">check</span>
+            </p>
+            <p class="mt-8 text-[10px] font-black uppercase tracking-[0.5em] opacity-40">
+                Admin panel / Secure Access
+            </p>
         </div>
 
-        <div class="space-y-6">
-            <div class="space-y-2 text-left">
-                <label class="text-[10px] font-black uppercase tracking-widest ml-4 text-sky-400">Mật khẩu truy cập</label>
-                <input id="adminKey" type="password" placeholder="••••••••" 
-                       class="w-full p-6 rounded-3xl text-center font-bold text-2xl outline-none">
+        <div class="login-section">
+            <div class="bento-login-card">
+                <div class="mb-10 text-center">
+                    <div class="text-4xl mb-4">🔐</div>
+                    <h2 class="text-sm font-black uppercase tracking-[0.3em] opacity-60">Xác thực quyền truy cập</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <input id="adminKey" type="password" placeholder="Mật khẩu Admin">
+                    
+                    <button onclick="checkAuth()" class="btn-login">
+                        Tiến vào hệ thống
+                    </button>
+
+                    <div class="flex items-center justify-center gap-4 py-4">
+                        <div class="h-[1px] flex-1 bg-white/10"></div>
+                        <span class="text-[9px] font-black opacity-30 uppercase tracking-widest">vfrrrr security</span>
+                        <div class="h-[1px] flex-1 bg-white/10"></div>
+                    </div>
+
+                    <a href="index.html" class="block text-center text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 hover:brand-lime">
+                        ← Quay lại trang chủ
+                    </a>
+                </div>
             </div>
-            
-            <button onclick="checkAuth()" 
-                    class="w-full bg-lime-400 text-sky-950 font-black py-6 rounded-3xl shadow-xl uppercase tracking-[0.2em] text-sm">
-                Tiến vào Admin
-            </button>
-        </div>
-
-        <!-- Nút quay về trang chủ -->
-        <div class="mt-12 pt-8 border-t border-white/10">
-            <a href="index.html" class="text-sky-400 hover:text-white font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2">
-                ← Quay về trang chủ
-            </a>
         </div>
     </div>
 
     <script>
         function checkAuth() {
             const key = document.getElementById('adminKey').value;
-            // Mật khẩu mặc định của dự án
             if (key === 'vfrrrr123') {
                 sessionStorage.setItem("isVfrrrrAdmin", "true");
                 window.location.href = "admin.html";
@@ -71,10 +160,11 @@
             }
         }
 
-        // Hỗ trợ nhấn Enter để đăng nhập nhanh
-        document.addEventListener('keypress', function (e) {
+        document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') checkAuth();
         });
+
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
     </script>
 </body>
 </html>

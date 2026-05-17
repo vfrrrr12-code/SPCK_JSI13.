@@ -3,150 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VFRRRR | Growth & Ads Performance</title>
+    <title>Trường THCS & THPT Nguyễn Tất Thành - ĐHSP Hà Nội</title>
+    <meta name="description" content="Website chính thức giới thiệu về hệ thống giáo dục chất lượng cao Nguyễn Tất Thành.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
         
+        /* BẢNG MÀU ĐỒNG NHẤT HỆ THỐNG */
         :root[data-theme="dark"] {
-            /* Thay đổi nền thành gradient tối và hiện đại hơn */
-            --bg-gradient: linear-gradient(135deg, #071e3d 0%, #030a1c 100%);
-            --text: #f0f9ff;
-            /* Thêm hiệu ứng kính mờ (glassmorphism) cho thẻ */
+            --bg: #030a1c;
+            --text-hero: #ffffff;
+            --text-body: #f0f9ff;
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: rgba(186, 230, 253, 0.1);
-            --nav-bg: rgba(12, 74, 110, 0.8); /* Nav kính mờ */
-            --lime-glow: #bef264;
+            --nav-bg: rgba(7, 30, 61, 0.5);
+            --nav-text: #ffffff;
+            --sub-text: rgba(240, 249, 255, 0.6);
         }
         :root[data-theme="light"] {
-            --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            --text: #075985;
-            --card-bg: rgba(7, 89, 133, 0.05);
-            --card-border: rgba(7, 89, 133, 0.1);
-            --nav-bg: rgba(255, 255, 255, 0.8);
-            --lime-glow: #075985;
+            --bg: #f8fafc;
+            --text-hero: #0f172a;
+            --text-body: #334155;
+            --card-bg: rgba(15, 23, 42, 0.04);
+            --card-border: rgba(15, 23, 42, 0.08);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --nav-text: #0f172a;
+            --sub-text: rgba(15, 23, 42, 0.65);
         }
 
         body { 
-            background: var(--bg-gradient); 
-            background-attachment: fixed; /* Giữ nền cố định khi cuộn */
-            color: var(--text); 
+            background: var(--bg); 
+            color: var(--text-body); 
         }
-        .brand-lime { color: #bef264; }
         
         .nav-giant {
-            padding: 1.5rem 4rem;
+            padding: 1rem 3rem;
             width: 90%;
-            max-width: 1200px;
+            max-width: 1100px;
             background: var(--nav-bg);
-            border: 2px solid #bef264;
+            border: 1px solid rgba(190, 242, 100, 0.4);
             border-radius: 100px;
-            backdrop-filter: blur(15px); /* Hiệu ứng mờ nền */
+            backdrop-filter: blur(15px);
         }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
+        .nav-text-color {
+            color: var(--nav-text);
         }
 
-        /* Thêm hiệu ứng cho Bento Card */
         .bento-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 40px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ cho card */
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            border-radius: 32px;
+            backdrop-filter: blur(10px);
         }
 
-        /* Hiệu ứng khi di chuột lên card */
         .bento-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(190, 242, 100, 0.3);
-            border-color: rgba(190, 242, 100, 0.5);
-        }
-
-        /* Hiệu ứng trang trí góc cho card lớn */
-        .bento-card-large::after {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 100px;
-            height: 100px;
-            background: var(--lime-glow);
-            filter: blur(50px);
-            opacity: 0.2;
-            pointer-events: none;
-        }
-        body { 
-            background: var(--bg-gradient); 
-            background-attachment: fixed;
-            color: var(--text);
-            /* Thêm dòng này để giãn dòng toàn trang */
-            line-height: 1.8; 
-        }
-
-        /* Hoặc chỉ chỉnh riêng cho các đoạn mô tả */
-        #heroBody, #heroSubBody {
-            line-height: 2; /* Giãn rộng gấp đôi cỡ chữ */
+            border-color: rgba(190, 242, 100, 0.4);
         }
     </style>
 </head>
-<body class="antialiased">
-    <nav class="fixed top-10 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-2xl">
-        <div class="text-3xl font-black italic uppercase">VF<span class="brand-lime">RRRR</span></div>
-        <div class="flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.3em]">
-            <a href="index.html" class="brand-lime underline underline-offset-8 decoration-2">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <button onclick="toggleTheme()" class="ml-4 p-2 bg-white/10 rounded-full">🌓</button>
+<body class="antialiased pb-20">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-xl">
+        <div class="text-xl font-black italic uppercase nav-text-color tracking-wider">VF<span class="text-[#bef264]">RRRR</span></div>
+        <div class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
+            <a href="index.html" class="text-[#bef264]">Home</a>
+            <a href="about.html" class="opacity-60 hover:opacity-100 nav-text-color">About</a>
+            <a href="contact.html" class="opacity-60 hover:opacity-100 nav-text-color">Contact</a>
+            <button onclick="toggleTheme()" class="p-1 bg-white/10 dark:bg-black/10 rounded-full text-xs">🌓</button>
         </div>
     </nav>
 
-    <main class="pt-56 px-8 max-w-7xl mx-auto pb-20">
-        <div class="mb-12">
-            <h1 id="heroTitle" class="text-7xl md:text-[9rem] font-black italic uppercase tracking-tighter leading-[0.85] mb-10"></h1>
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-                <p id="heroBody" class="md:col-span-8 text-3xl md:text-5xl font-bold italic border-l-[12px] border-[#bef264] pl-10 opacity-90"></p>
-                <div class="md:col-span-4 text-right">
-                    <a href="https://ntthnue.edu.vn/" class="inline-block bg-[#bef264] text-[#075985] font-black px-12 py-6 rounded-full uppercase tracking-widest text-xs hover:scale-105 hover:shadow-[0_0_15px_rgba(190,242,100,0.5)] active:scale-95 transition-all">Tìm hiểu thêm</a>
-                </div>
-            </div>
+    <main class="pt-64 px-6 max-w-5xl mx-auto">
+        <div class="mb-28 space-y-12">
+            <h1 id="heroTitle" style="color: var(--text-hero);" class="text-6xl md:text-[6.5rem] font-black italic uppercase tracking-tighter leading-[1.3] space-y-8">
+                LOADING...
+            </h1>
+            <p id="heroBody" class="text-xl md:text-2xl font-bold italic border-l-[6px] border-[#bef264] pl-10 py-3 opacity-90 max-w-3xl leading-relaxed">
+                Đang tải dữ liệu...
+            </p>
         </div>
 
-        <div class="bento-grid">
-            <div class="bento-card bento-card-large col-span-12 md:col-span-8 h-[400px] overflow-hidden relative group">
-                <img id="bannerImg" src="" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500" alt="Ads Performance">
-                <div class="relative z-10 h-full flex flex-col justify-end">
-                    <div class="text-4xl font-black italic uppercase brand-lime mb-4 drop-shadow-[0_0_10px_rgba(190,242,100,0.5)]">Trường THCS và THPT Nguyễn Tất Thành</div>
+        <div class="grid grid-cols-12 gap-5">
+            <div class="bento-card col-span-12 md:col-span-8 h-[360px] overflow-hidden relative group">
+                <img id="bannerImg" src="" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 duration-500" alt="Banner">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-6 left-8 z-10">
+                    <div id="cardTitle" class="text-2xl font-black italic uppercase text-[#bef264] tracking-tight">NGUYỄN TẤT THÀNH</div>
+                    <div class="text-[9px] font-medium uppercase tracking-[0.2em] text-white/60 mt-1">High School & Performance</div>
                 </div>
             </div>
             
-            <div class="bento-card col-span-12 md:col-span-4 flex flex-col justify-center text-center border-[#bef264]/20 hover:border-[#bef264]/50 hover:bg-[#bef264]/5">
-                <div class="text-6xl font-black brand-lime mb-4 drop-shadow-[0_0_10px_rgba(190,242,100,0.5)]">99%</div>
-                <div class="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">Conversion Rate Optimization</div>
+            <div class="col-span-12 md:col-span-4 flex flex-col gap-5">
+                <div class="bento-card flex-1 h-[170px] overflow-hidden relative group">
+                    <img id="campusImg" src="" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 duration-500" alt="Campus">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-6 z-10">
+                        <div id="campusLabel" class="text-sm font-black italic uppercase text-[#bef264] tracking-wider">Khuôn viên trường</div>
+                    </div>
+                </div>
+
+                <a id="ctaLink" href="#" target="_blank" class="bento-card flex-1 h-[170px] bg-[#bef264] flex items-center justify-center hover:scale-[1.02] active:scale-95 duration-200 cursor-pointer border-none shadow-[0_0_20px_rgba(190,242,100,0.1)]">
+                    <span class="text-[#075985] font-black uppercase tracking-[0.3em] text-[11px]">Khám phá ngay</span>
+                </a>
             </div>
 
-            <div class="bento-card col-span-12 md:col-span-12 hover:bg-white/5">
-                <p id="heroSubBody" class="text-xl md:text-2xl font-medium leading-relaxed italic opacity-70"></p>
+            <div class="bento-card col-span-12 p-8 md:p-10 bg-white/[0.02]">
+                <p id="heroSubBody" class="text-base md:text-lg font-medium opacity-70 leading-relaxed space-y-2 whitespace-pre-line font-sans">
+                    Đang đồng bộ dữ liệu...
+                </p>
             </div>
         </div>
 
-        <footer class="mt-32 pt-12 border-t border-white/10 flex justify-between items-center opacity-40 hover:opacity-100 transition-opacity">
-            <div id="secretGate" class="text-[10px] font-black uppercase tracking-[1em] cursor-pointer hover:brand-lime">VF<br>RRRR STUDIO / EST 2026</div>
-            <div class="text-[10px] font-black uppercase tracking-[0.5em]">© ALL RIGHTS RESERVED</div>
+        <footer class="mt-20 pt-8 border-t border-white/5 flex justify-between items-center opacity-30 hover:opacity-100">
+            <div id="secretGate" class="text-[9px] font-black uppercase tracking-[0.6em] cursor-pointer">VF RRRR STUDIO / EST 2026</div>
+            <div class="text-[9px] font-black uppercase tracking-[0.3em]">© ALL RIGHTS RESERVED</div>
         </footer>
     </main>
 
     <script type="module">
         import { db, doc, getDoc } from './db.js';
 
-        // Theme System
         window.toggleTheme = () => {
             const current = document.documentElement.getAttribute('data-theme');
             const target = current === 'dark' ? 'light' : 'dark';
@@ -155,7 +132,6 @@
         };
         document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
 
-        // Secret Trigger
         let clickCount = 0;
         document.getElementById('secretGate').addEventListener('click', () => {
             clickCount++;
@@ -163,18 +139,21 @@
             setTimeout(() => { clickCount = 0; }, 2000);
         });
 
-        // Load Content
         async function loadContent() {
             try {
                 const snap = await getDoc(doc(db, 'web_content', 'home'));
                 if (snap.exists()) {
                     const d = snap.data();
-                    document.getElementById('heroTitle').innerText = d.title || "VFRRRR";
-                    document.getElementById('heroBody').innerText = d.body || "Loading experience...";
-                    document.getElementById('heroSubBody').innerText = d.subBody || "";
+                    if (d.title) document.getElementById('heroTitle').innerHTML = d.title.replace(/\n/g, '<br class="mb-8 block content-[\'\']">');
+                    if (d.body) document.getElementById('heroBody').innerText = d.body;
+                    if (d.subBody) document.getElementById('heroSubBody').innerText = d.subBody;
                     if (d.bannerUrl) document.getElementById('bannerImg').src = d.bannerUrl;
+                    document.getElementById('campusImg').src = d.campusUrl || "https://ntthnue.edu.vn/uploads/ntt.jpg";
+                    document.getElementById('ctaLink').href = d.ctaUrl || "https://ntthnue.edu.vn/";
+                    if (d.cardTitle) document.getElementById('cardTitle').innerText = d.cardTitle;
+                    if (d.campusLabel) document.getElementById('campusLabel').innerText = d.campusLabel;
                 }
-            } catch (e) { console.error("Firebase Error:", e); }
+            } catch (e) { console.error("Firebase Sync Error:", e); }
         }
         loadContent();
     </script>

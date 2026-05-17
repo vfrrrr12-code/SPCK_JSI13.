@@ -7,109 +7,166 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
-        /* Đồng bộ phông chữ và tắt mọi hiệu ứng chuyển động */
-        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: none !important; }
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
         
         :root[data-theme="dark"] {
-            --bg: #071e3d;
+            --bg-gradient: linear-gradient(135deg, #071e3d 0%, #030a1c 100%);
             --text: #f0f9ff;
-            --card-bg: #0c4a6e;
-            --input-bg: rgba(255, 255, 255, 0.05);
-            --nav-bg: #0c4a6e;
-        }
-        :root[data-theme="light"] {
-            --bg: #f0f9ff;
-            --text: #075985;
-            --card-bg: #ffffff;
-            --input-bg: rgba(7, 89, 133, 0.05);
-            --nav-bg: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(186, 230, 253, 0.1);
+            --nav-bg: rgba(12, 74, 110, 0.8);
+            --lime-glow: #bef264;
         }
 
-        body { background-color: var(--bg); color: var(--text); min-height: 100vh; }
+        body { 
+            background: var(--bg-gradient); 
+            background-attachment: fixed;
+            color: var(--text);
+            line-height: 1.6;
+        }
         .brand-lime { color: #bef264; }
         
-        /* Menu khổng lồ đồng bộ toàn trang */
         .nav-giant {
-            padding: 1.5rem 4rem;
+            padding: 1.2rem 3rem;
             width: 90%;
-            max-width: 1200px;
+            max-width: 1100px;
             background: var(--nav-bg);
             border: 2px solid #bef264;
             border-radius: 100px;
+            backdrop-filter: blur(15px);
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 40px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
         }
 
         input, textarea, select {
-            background: var(--input-bg) !important;
-            border: 2px solid rgba(186, 230, 253, 0.2) !important;
-            color: var(--text) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(186, 230, 253, 0.1) !important;
+            color: white !important;
+            border-radius: 20px;
+            padding: 1.25rem;
+            width: 100%;
             outline: none;
+            resize: vertical;
         }
-        input:focus, textarea:focus { border-color: #bef264 !important; }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #bef264 !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .btn-update {
+            background: #bef264;
+            color: #075985;
+            font-weight: 900;
+            border-radius: 25px;
+        }
+
+        .btn-update:hover {
+            transform: scale(0.99);
+            box-shadow: 0 0 40px rgba(190, 242, 100, 0.2);
+        }
+
+        label {
+            display: block;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+            margin-left: 1rem;
+            opacity: 0.5;
+        }
     </style>
 </head>
-<body class="antialiased pb-20">
-    <!-- Thanh điều hướng trung tâm -->
-    <nav class="fixed top-10 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-2xl">
-        <div class="text-3xl font-black italic uppercase">VF<span class="brand-lime">RRRR</span></div>
-        <div class="flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.3em]">
-            <a href="admin.html" class="brand-lime underline underline-offset-8 decoration-2">CMS</a>
+<body class="antialiased">
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50 nav-giant flex justify-between items-center shadow-2xl">
+        <div class="text-2xl font-black italic uppercase">VF<span class="brand-lime">RRRR</span></div>
+        <div class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
+            <a href="admin.html" class="brand-lime underline underline-offset-8 decoration-2">CMS Control</a>
             <a href="leads.html">Leads</a>
-            <a href="index.html">View Site</a>
+            <a href="index.html">Live View</a>
         </div>
     </nav>
 
-    <main class="pt-56 px-8 max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+    <main class="pt-40 px-6 max-w-7xl mx-auto pb-20">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
             <h1 class="text-6xl md:text-8xl font-black italic uppercase tracking-tighter leading-none">
-                Content <span class="brand-lime">Manager</span>
+                System <span class="brand-lime">Config</span>
             </h1>
-            <select id="pageSelect" onchange="loadData()" class="p-5 rounded-2xl font-black uppercase tracking-widest text-xs cursor-pointer">
-                <option value="home">Trang Chủ</option>
-                <option value="about">Giới Thiệu</option>
-                <option value="contact">Liên Hệ</option>
-            </select>
+            <div class="w-full md:w-80">
+                <label>Chọn trang chỉnh sửa</label>
+                <select id="pageSelect" onchange="loadData()" class="font-black uppercase tracking-widest text-[10px]">
+                    <option value="home">Trang Chủ (Index)</option>
+                    <option value="about">Giới Thiệu (About)</option>
+                    <option value="contact">Liên Hệ (Contact)</option>
+                </select>
+            </div>
         </div>
 
-        <!-- Khung chỉnh sửa nội dung khổng lồ -->
-        <div style="background: var(--card-bg)" class="p-10 md:p-16 rounded-[60px] border-2 border-white/5 shadow-2xl space-y-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="space-y-3">
-                    <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Tiêu đề chính (Title)</label>
-                    <input type="text" id="title" class="w-full p-7 rounded-3xl font-black text-2xl uppercase italic">
-                </div>
-                <div class="space-y-3">
-                    <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Ảnh nền (Banner URL)</label>
-                    <input type="text" id="bannerUrl" class="w-full p-7 rounded-3xl font-medium">
-                </div>
-            </div>
-            
-            <div class="space-y-3">
-                <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Mô tả ngắn (Body)</label>
-                <textarea id="body" rows="3" class="w-full p-8 rounded-[40px] font-bold text-xl italic"></textarea>
+        <div class="admin-grid">
+            <div class="bento-card col-span-12 md:col-span-6">
+                <label>Tiêu đề chính (Main Title)</label>
+                <input type="text" id="title" class="text-2xl font-black italic uppercase tracking-tighter" placeholder="TITLES...">
             </div>
 
-            <div class="space-y-3">
-                <label class="text-[10px] font-black uppercase tracking-[0.4em] ml-6 opacity-50">Nội dung chi tiết (SubBody)</label>
-                <textarea id="subBody" rows="6" class="w-full p-8 rounded-[40px] font-medium text-lg leading-relaxed"></textarea>
+            <div class="bento-card col-span-12 md:col-span-6">
+                <label>Ảnh nền (Banner Image URL)</label>
+                <input type="text" id="bannerUrl" class="text-sm font-mono" placeholder="https://...">
             </div>
 
-            <button onclick="saveData()" class="w-full bg-[#bef264] text-[#075985] font-black py-8 rounded-[40px] uppercase tracking-[0.6em] text-xs shadow-xl active:scale-95">
-                Cập nhật cấu hình ngay
-            </button>
+            <div class="bento-card col-span-12">
+                <label>Mô tả ngắn / Tuyên ngôn (Hero Body)</label>
+                <textarea id="body" rows="4" class="text-2xl font-bold italic leading-snug" placeholder="Nội dung tuyên ngôn chính của trang..."></textarea>
+            </div>
+
+            <div class="bento-card col-span-12">
+                <div class="flex justify-between items-center mb-4">
+                    <label class="mb-0">Nội dung chi tiết (Sub Body Content)</label>
+                    <span class="text-[8px] font-black uppercase opacity-30 tracking-widest">Full Width Editor</span>
+                </div>
+                <textarea id="subBody" rows="12" class="text-lg font-medium leading-relaxed opacity-80" placeholder="Nhập nội dung chi tiết hỗ trợ, thông tin giới thiệu hoặc thông số kỹ thuật..."></textarea>
+            </div>
+
+            <div class="col-span-12 flex flex-col md:flex-row gap-6 items-center">
+                <button onclick="saveData()" class="btn-update flex-1 py-10 text-xs uppercase tracking-[0.5em]">
+                    Cập nhật cơ sở dữ liệu vfrrrr
+                </button>
+                
+                <div class="bento-card py-6 px-10 flex items-center gap-4 bg-[#bef264]/5 border-[#bef264]/20">
+                    <div class="w-2 h-2 bg-[#bef264] rounded-full animate-ping"></div>
+                    <span class="text-[9px] font-black uppercase tracking-widest opacity-60">Sync Ready</span>
+                </div>
+            </div>
         </div>
+
+        <footer class="mt-20 pt-8 border-t border-white/5 opacity-20 text-center">
+            <div class="text-[10px] font-black uppercase tracking-[1em]">VFRRRR Admin Panel V2.1 / Full-Width Edition</div>
+        </footer>
     </main>
 
     <script type="module">
         import { db, doc, getDoc, setDoc } from './db.js';
 
-        // Bảo mật và Theme
         if (sessionStorage.getItem("isVfrrrrAdmin") !== "true") window.location.href = "login.html";
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
 
-        // Hàm tải dữ liệu trang
         window.loadData = async () => {
             const page = document.getElementById('pageSelect').value;
+            const inputs = ['title', 'body', 'subBody', 'bannerUrl'];
+            inputs.forEach(id => document.getElementById(id).value = 'Đang tải...');
+            
             try {
                 const snap = await getDoc(doc(db, 'web_content', page));
                 if(snap.exists()){
@@ -119,14 +176,14 @@
                     document.getElementById('subBody').value = d.subBody || '';
                     document.getElementById('bannerUrl').value = d.bannerUrl || '';
                 }
-            } catch (e) { console.error("Lỗi tải dữ liệu:", e); }
+            } catch (e) { console.error("Lỗi:", e); }
         };
 
-        // Hàm lưu dữ liệu vào Firebase
         window.saveData = async () => {
             const page = document.getElementById('pageSelect').value;
-            const btn = document.querySelector('button');
-            btn.innerText = "ĐANG LƯU HỆ THỐNG...";
+            const btn = document.querySelector('.btn-update');
+            const originalText = btn.innerText;
+            btn.innerText = "ĐANG ĐỒNG BỘ DỮ LIỆU...";
             
             try {
                 await setDoc(doc(db, 'web_content', page), {
@@ -135,15 +192,11 @@
                     subBody: document.getElementById('subBody').value,
                     bannerUrl: document.getElementById('bannerUrl').value
                 });
-                alert("Hệ thống vfrrrr đã được cập nhật thành công!");
-            } catch (e) { 
-                alert("Lỗi lưu trữ: " + e.message); 
-            } finally {
-                btn.innerText = "CẬP NHẬT CẤU HÌNH NGAY";
-            }
+                alert("Đã lưu thành công vào Firebase!");
+            } catch (e) { alert("Lỗi: " + e.message); } 
+            finally { btn.innerText = originalText; }
         };
 
-        // Khởi tạo trang
         loadData();
     </script>
 </body>

@@ -2,55 +2,71 @@
 <html lang="vi" data-theme="dark">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leads | VFRRRR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: none !important; }
-        :root[data-theme="dark"] { --bg: #071e3d; --text: #f0f9ff; }
-        :root[data-theme="light"] { --bg: #f0f9ff; --text: #075985; }
-        body { background: var(--bg); color: var(--text); }
-        .nav-fixed { padding: 1.5rem 4rem; width: 90%; max-width: 1100px; background: #0c4a6e; border: 2px solid #bef264; border-radius: 100px; }
-        .lead-card { background: #0c4a6e; border: 2px solid rgba(255,255,255,0.1); border-radius: 40px; color: white; }
+        * { font-family: 'Plus Jakarta Sans', sans-serif !important; transition: all 0.3s ease !important; }
+        :root[data-theme="dark"] {
+            --bg: linear-gradient(135deg, #071e3d 0%, #030a1c 100%);
+            --text: #f0f9ff;
+            --card: rgba(255, 255, 255, 0.03);
+        }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; background-attachment: fixed; }
+        .nav-fixed { padding: 1.5rem 4rem; width: 90%; max-width: 1100px; background: rgba(12, 74, 110, 0.8); border: 2px solid #bef264; border-radius: 100px; backdrop-filter: blur(15px); }
+        .lead-card { background: var(--card); border: 1px solid rgba(186, 230, 253, 0.1); border-radius: 40px; backdrop-filter: blur(10px); }
+        .lead-card:hover { border-color: #bef264; transform: translateY(-5px); }
     </style>
 </head>
 <body class="antialiased pb-20">
     <nav class="fixed top-10 left-1/2 -translate-x-1/2 z-50 nav-fixed flex justify-between items-center shadow-2xl">
         <div class="text-3xl font-black italic uppercase">VF<span class="text-[#bef264]">RRRR</span></div>
-        <div class="flex gap-12 text-[10px] font-black uppercase tracking-[0.3em] text-sky-200">
+        <div class="flex gap-12 text-[10px] font-black uppercase tracking-[0.3em]">
             <a href="admin.html">CMS</a>
             <a href="leads.html" class="text-[#bef264] underline underline-offset-8">Leads</a>
             <a href="index.html">Exit</a>
         </div>
     </nav>
+
     <main class="pt-52 px-8 max-w-7xl mx-auto">
-        <h1 class="text-6xl font-black italic uppercase mb-12">Customer <span class="text-[#bef264]">Leads</span></h1>
+        <h1 class="text-6xl md:text-8xl font-black italic uppercase mb-12 tracking-tighter">Customer <span class="text-[#bef264]">Leads</span></h1>
         <div id="leadsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </main>
 
     <script type="module">
         import { db, collection, getDocs, query, orderBy } from './db.js';
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        
         if (sessionStorage.getItem("isVfrrrrAdmin") !== "true") window.location.href = "login.html";
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+
         async function loadLeads() {
             const container = document.getElementById('leadsContainer');
-            const q = query(collection(db, 'customer_leads'), orderBy('time', 'desc'));
-            const snap = await getDocs(q);
-            container.innerHTML = '';
-            snap.forEach(doc => {
-                const d = doc.data();
-                container.innerHTML += `
-                    <div class="lead-card p-10 space-y-6">
-                        <p class="text-[10px] font-black uppercase tracking-widest text-sky-400">${d.time}</p>
-                        <h3 class="text-3xl font-black italic text-[#bef264] uppercase">${d.name}</h3>
-                        <p class="text-xl font-bold">${d.phone}</p>
-                        <div class="flex gap-4">
-                            <a href="tel:${d.phone}" class="flex-1 bg-white text-sky-950 text-center py-4 rounded-2xl font-black text-[10px] uppercase">Gọi</a>
-                            <a href="https://zalo.me/${d.phone}" target="_blank" class="flex-1 bg-sky-500 text-white text-center py-4 rounded-2xl font-black text-[10px] uppercase">Zalo</a>
-                        </div>
-                    </div>`;
-            });
+            try {
+                const q = query(collection(db, 'customer_leads'), orderBy('time', 'desc'));
+                const snap = await getDocs(q);
+                container.innerHTML = '';
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    // Đảm bảo không có dấu hai chấm sai chỗ trong template literal bên dưới
+                    const card = `
+                        <div class="lead-card p-10 flex flex-col justify-between h-full">
+                            <div>
+                                <p class="text-[9px] font-black uppercase tracking-widest text-sky-400 mb-4 opacity-50">${d.time}</p>
+                                <h3 class="text-4xl font-black italic text-[#bef264] uppercase tracking-tighter mb-2">${d.name}</h3>
+                                <p class="text-xl font-bold opacity-80 font-mono mb-8">${d.phone}</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="tel:${d.phone}" class="flex-1 bg-white text-sky-950 text-center py-5 rounded-2xl font-black text-[10px] uppercase hover:bg-[#bef264]">Gọi</a>
+                                <a href="https://zalo.me/${d.phone}" target="_blank" class="flex-1 bg-sky-500 text-white text-center py-5 rounded-2xl font-black text-[10px] uppercase hover:bg-sky-400">Zalo</a>
+                            </div>
+                        </div>`;
+                    container.innerHTML += card;
+                });
+            } catch (e) {
+                console.error("Lỗi:", e);
+                container.innerHTML = "Lỗi tải dữ liệu.";
+            }
         }
         loadLeads();
     </script>
